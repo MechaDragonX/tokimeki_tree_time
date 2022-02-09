@@ -24,8 +24,24 @@ class Tri(Generic[T]):
     def __contains(self, current, value) -> bool:
         if (current.value == value):
             return True
-        else :
+        else:
             self.__contains(self, current.left, value)
             self.__contains(self, current.right, value)
             self.__contains(self, current.middle, value)
         return False
+    
+    def __add(self, current, value) -> None:
+        if (current != None):
+            if (current.left == None):
+                current.left = TriNode[T](value)
+                return
+            elif (current.middle == None):
+                current.middle = TriNode[T](value)
+                return
+            elif (current.right == None):
+                current.right = TriNode[T](value)
+                return
+        else:
+            self.__add(self, current.left, value)
+            self.__add(self, current.right, value)
+            self.__add(self, current.middle, value)

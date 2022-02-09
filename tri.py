@@ -18,3 +18,8 @@ class Tri(Generic[T]):
 
     def __init__(self, value) -> None:
         _root = TriNode[T](value)
+
+    def contains(self, value) -> bool:
+        return self.__contains(self.__root, value)
+    def __contains(self, current, value) -> bool:
+        return False

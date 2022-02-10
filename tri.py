@@ -34,16 +34,16 @@ class Tri(Generic[T]):
         return self.__add(self.__root, value)
 
     def __add(self, current, value) -> None:
-        if (current == None):
+        if current == None:
             return
 
-        if (current.left == None):
+        if current.left == None:
             current.left = TriNode[T](value)
             return
-        elif (current.middle == None):
+        elif current.middle == None:
             current.middle = TriNode[T](value)
             return
-        elif (current.right == None):
+        elif current.right == None:
             current.right = TriNode[T](value)
             return
         else:

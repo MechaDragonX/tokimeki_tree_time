@@ -14,13 +14,13 @@ class TriNode(Generic[T]):
         self.value = val
 
 class Tri(Generic[T]):
-    root = None
+    __root = None
 
     def __init__(self, value) -> None:
-        self.root = TriNode[T](value)
+        self.__root = TriNode[T](value)
 
     def contains(self, value) -> bool:
-        return self.__contains(self.root, value)
+        return self.__contains(self.__root, value)
     def __contains(self, current, value) -> bool:
         if (current.value == value):
             return True
@@ -30,18 +30,23 @@ class Tri(Generic[T]):
             self.__contains(self, current.middle, value)
         return False
     
-    def add(self, current, value) -> None:
-        if (current != None):
-            if (current.left == None):
-                current.left = TriNode[T](value)
-                return
-            elif (current.middle == None):
-                current.middle = TriNode[T](value)
-                return
-            elif (current.right == None):
-                current.right = TriNode[T](value)
-                return
+    def add(self, value) -> None:
+        return self.__add(self.__root, value)
+
+    def __add(self, current, value) -> None:
+        if (current == None):
+            return
+
+        if (current.left == None):
+            current.left = TriNode[T](value)
+            return
+        elif (current.middle == None):
+            current.middle = TriNode[T](value)
+            return
+        elif (current.right == None):
+            current.right = TriNode[T](value)
+            return
         else:
-            self.add(self, current.left, value)
-            self.add(self, current.right, value)
-            self.add(self, current.middle, value)
+            self.add(current.left, value)
+            self.add(current.right, value)
+            self.add(current.middle, value)
